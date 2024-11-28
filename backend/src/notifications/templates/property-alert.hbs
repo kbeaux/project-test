@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Property Alert</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .header {
+      background-color: #1d4ed8;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .content {
+      padding: 20px;
+      background-color: #f9fafb;
+      border-radius: 4px;
+    }
+    .property {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #e5e7eb;
+      border-radius: 4px;
+    }
+    .property img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .button {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #1d4ed8;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>New Properties Found</h1>
+    </div>
+    <div class="content">
+      <p>We found {{properties.length}} new properties matching your criteria:</p>
+      
+      {{#if criteria}}
+        <ul>
+          {{#if criteria.category}}<li>Category: {{criteria.category}}</li>{{/if}}
+          {{#if criteria.transactionType}}<li>Transaction Type: {{criteria.transactionType}}</li>{{/if}}
+          {{#if criteria.city}}<li>City: {{criteria.city}}</li>{{/if}}
+          {{#if criteria.zipCode}}<li>Zip Code: {{criteria.zipCode}}</li>{{/if}}
+          {{#if criteria.surfaceMin}}<li>Min Surface: {{criteria.surfaceMin}}m²</li>{{/if}}
+          {{#if criteria.surfaceMax}}<li>Max Surface: {{criteria.surfaceMax}}m²</li>{{/if}}
+          {{#if criteria.priceMin}}<li>Min Price: €{{criteria.priceMin}}</li>{{/if}}
+          {{#if criteria.priceMax}}<li>Max Price: €{{criteria.priceMax}}</li>{{/if}}
+        </ul>
+      {{/if}}
+
+      {{#each properties}}
+        <div class="property">
+          <img src="{{images.[0]}}" alt="{{type}}">
+          <h2>{{type}}</h2>
+          <p>{{location.city}}, {{location.zipCode}}</p>
+          <p>Surface: {{surface}}m² | Price: €{{price}}</p>
+          <a href="{{../baseUrl}}/properties/{{id}}" class="button">View Property</a>
+        </div>
+      {{/each}}
+
+      <p>
+        You are receiving this {{frequency}} alert because you subscribed to property notifications.
+        To manage your alerts, visit your account settings.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
