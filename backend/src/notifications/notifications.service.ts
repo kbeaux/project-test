@@ -6,6 +6,7 @@ import { MailerService } from '@nestjs-modules/mailer';
 import { PropertyAlert } from './entities/property-alert.entity';
 import { CreateAlertDto } from './dto/create-alert.dto';
 import { PropertySearchService } from '../property/services/property-search.service';
+import { SearchPropertyDto } from '@/property/dto/search-property.dto';
 
 @Injectable()
 export class NotificationsService {
@@ -28,7 +29,7 @@ export class NotificationsService {
     return this.alertRepository.save(alert);
   }
 
-  async updateAlert(alertId: string, isActive: boolean): Promise<PropertyAlert> {
+  async updateAlert(alertId: string, isActive: boolean): Promise<PropertyAlert | null> {
     await this.alertRepository.update(alertId, { isActive });
     return this.alertRepository.findOne({ where: { id: alertId } });
   }
@@ -59,7 +60,7 @@ export class NotificationsService {
 
     for (const alert of alerts) {
       try {
-        const [properties] = await this.propertySearchService.search(alert.criteria);
+        const [properties] = await this.propertySearchService.search(alert.criteria as SearchPropertyDto);
 
         if (properties.length > 0) {
           await this.sendAlertEmail(alert, properties);

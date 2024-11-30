@@ -1,6 +1,7 @@
 import { Property } from '@/types/property';
 import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useImageUrl } from '@/hooks/useImageUrl';
 
 interface PropertyCompareProps {
   properties: Property[];
@@ -9,6 +10,7 @@ interface PropertyCompareProps {
 }
 
 export function PropertyCompare({ properties, onRemove, className }: PropertyCompareProps) {
+  const { getImageUrl } = useImageUrl();
   if (properties.length === 0) return null;
 
   return (
@@ -24,7 +26,7 @@ export function PropertyCompare({ properties, onRemove, className }: PropertyCom
             </button>
 
             <img
-              src={property.images[0]}
+              src={getImageUrl(property.images[0])}
               alt={property.displayRef}
               className="w-full h-48 object-cover rounded-lg mb-4"
             />

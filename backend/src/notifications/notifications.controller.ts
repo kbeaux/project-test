@@ -24,7 +24,7 @@ export class NotificationsController {
   @ApiOperation({ summary: 'Create property alert' })
   @ApiResponse({ status: 201, type: PropertyAlert })
   async createAlert(
-    @Request() req,
+    @Request() req: { user: { id: string } },
     @Body() createAlertDto: CreateAlertDto,
   ): Promise<PropertyAlert> {
     return this.notificationsService.createAlert(req.user.id, createAlertDto);
@@ -33,7 +33,7 @@ export class NotificationsController {
   @Get('alerts')
   @ApiOperation({ summary: 'Get user alerts' })
   @ApiResponse({ status: 200, type: [PropertyAlert] })
-  async getUserAlerts(@Request() req): Promise<PropertyAlert[]> {
+  async getUserAlerts(@Request() req: { user: { id: string } }): Promise<PropertyAlert[]> {
     return this.notificationsService.getUserAlerts(req.user.id);
   }
 
@@ -43,7 +43,7 @@ export class NotificationsController {
   async updateAlert(
     @Param('id') id: string,
     @Body('isActive') isActive: boolean,
-  ): Promise<PropertyAlert> {
+  ): Promise<PropertyAlert | null> {
     return this.notificationsService.updateAlert(id, isActive);
   }
 }

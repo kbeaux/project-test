@@ -2,12 +2,16 @@ export enum PropertyCategory {
   COMMERCIAL = 'COMMERCIAL',
   OFFICE = 'OFFICE',
   RETAIL = 'RETAIL',
+  BUSINESS = 'Business',
+  RESIDENTIAL = 'Residential',
 }
 
 export enum TransactionType {
   SALE = 'SALE',
   RENT = 'RENT',
   TRANSFER = 'TRANSFER',
+  CESSION_DE_BAIL = 'CessionDeBail',
+  VENTE = 'Vente',
 }
 
 export const PROPERTY_TYPES = {

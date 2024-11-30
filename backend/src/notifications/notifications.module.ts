@@ -6,10 +6,12 @@ import { NotificationsService } from './notifications.service';
 import { NotificationsController } from './notifications.controller';
 import { PropertyAlert } from './entities/property-alert.entity';
 import { ConfigService } from '@nestjs/config';
+import { PropertyModule } from '@/property/property.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([PropertyAlert]),
+    PropertyModule,
     MailerModule.forRootAsync({
       useFactory: async (config: ConfigService) => ({
         transport: {

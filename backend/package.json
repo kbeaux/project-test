@@ -13,7 +13,9 @@
     "lint": "eslint \"{src,apps,libs}/**/*.ts\"",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:cov": "jest --coverage"
+    "test:cov": "jest --coverage",
+    "find-deadcode": "ts-prune",
+    "check-deps": "depcheck"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^1.11.2",
@@ -28,6 +30,7 @@
     "@nestjs/terminus": "^10.2.3",
     "@nestjs/typeorm": "^10.0.2",
     "@types/geojson": "^7946.0.14",
+    "axios": "^1.7.8",
     "basic-ftp": "^5.0.4",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",
@@ -37,9 +40,10 @@
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
-    "pg": "^8.11.3",
+    "pg": "^8.13.1",
     "reflect-metadata": "^0.2.1",
     "rxjs": "^7.8.1",
+    "sharp": "^0.33.5",
     "typeorm": "^0.3.20",
     "xml2js": "^0.6.2"
   },

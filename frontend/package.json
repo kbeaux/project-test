@@ -7,12 +7,15 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "find-deadcode": "ts-prune",
+    "check-deps": "depcheck"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
     "@react-google-maps/api": "^2.19.3",
     "@tanstack/react-query": "^5.61.5",
+    "@tanstack/react-query-devtools": "^5.61.5",
     "@testing-library/react": "^16.0.1",
     "@types/jest": "^29.5.14",
     "axios": "^1.6.7",

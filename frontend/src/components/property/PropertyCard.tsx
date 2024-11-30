@@ -3,6 +3,7 @@ import { Building2, MapPin, ArrowRightCircle } from 'lucide-react';
 import { Property } from '@/types/property';
 import { PropertyCompareButton } from './PropertyCompareButton';
 import { cn } from '@/lib/utils';
+import { useImageUrl } from '@/hooks/useImageUrl';
 
 interface PropertyCardProps {
   property: Property;
@@ -21,6 +22,7 @@ export function PropertyCard({
   onClick,
   className,
 }: PropertyCardProps) {
+  const { getImageUrl } = useImageUrl();
   const handleCompareClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -40,7 +42,7 @@ export function PropertyCard({
     >
       <div className="relative">
         <img
-          src={property.images[0] || 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=2940&auto=format&fit=crop'}
+          src={getImageUrl(property.images[0])}
           alt={property.displayRef}
           className="w-full h-48 object-cover"
         />
@@ -52,7 +54,7 @@ export function PropertyCard({
         {onCompare && (
           <div className="absolute top-4 right-4">
             <PropertyCompareButton
-              onClick={handleCompareClick}
+              onClick={(e?: React.MouseEvent) => handleCompareClick(e as React.MouseEvent)}
               isComparing={isComparing || false}
               disabled={disableCompare}
             />

@@ -1,8 +1,9 @@
 import { Controller, Get, Param, Query, NotFoundException } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { PropertyService } from './property.service';
+import { PropertyService } from './services/property.service';
 import { SearchPropertyDto } from './dto/search-property.dto';
 import { Property } from './entities/property.entity';
+import { PropertyCategory } from './constants/property.constants';
 
 @ApiTags('properties')
 @Controller('properties')
@@ -38,7 +39,7 @@ export class PropertyController {
   @Get('category/:category')
   @ApiOperation({ summary: 'Get properties by category' })
   @ApiResponse({ status: 200, type: [Property] })
-  async findByCategory(@Param('category') category: string): Promise<Property[]> {
+  async findByCategory(@Param('category') category: PropertyCategory): Promise<Property[]> {
     return this.propertyService.findByCategory(category);
   }
 }

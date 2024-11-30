@@ -5,7 +5,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { PropertyModule } from './property/property.module';
 import { AgencyModule } from './agency/agency.module';
 import { UserModule } from './user/user.module';
-import { FtpSyncModule } from './ftp-sync/ftp-sync.module';
+import { XmlSyncModule } from './xml-sync/xml-sync.module';
 import { AuthModule } from './auth/auth.module';
 import { ContactModule } from './contact/contact.module';
 import { CareersModule } from './careers/careers.module';
@@ -35,7 +35,7 @@ import { NotificationsModule } from './notifications/notifications.module';
     PropertyModule,
     AgencyModule,
     UserModule,
-    FtpSyncModule,
+    XmlSyncModule,
     ContactModule,
     CareersModule,
     NotificationsModule,

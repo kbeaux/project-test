@@ -1,64 +1,74 @@
-import { Routes, Route } from 'react-router-dom';
-import { HomePage } from '@/pages/HomePage';
-import { SearchPage } from '@/pages/SearchPage';
-import { PropertyDetailPage } from '@/pages/PropertyDetailPage';
-import { EstimatePage } from '@/pages/EstimatePage';
-import { InvestPage } from '@/pages/InvestPage';
-import { SellPage } from '@/pages/SellPage';
-import { CareersPage } from '@/pages/CareersPage';
-import { ContactPage } from '@/pages/ContactPage';
-import { LoginPage } from '@/pages/LoginPage';
-import { RegisterPage } from '@/pages/RegisterPage';
-import { ErrorPage } from '@/pages/ErrorPage';
-import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
+import { Routes, Route } from "react-router-dom";
+import { EstimatePage } from "@/pages/EstimatePage";
+import { InvestPage } from "@/pages/InvestPage";
+// import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
+import { Suspense, lazy } from "react";
+import LoadingSpinner from "./components/shared/LoadingSpinner";
+
+const HomePage = lazy(() =>
+  import("./pages/HomePage").then((module) => ({ default: module.HomePage }))
+);
+const PropertyDetailPage = lazy(() =>
+  import("./pages/PropertyDetailPage").then((module) => ({
+    default: module.PropertyDetailPage,
+  }))
+);
+const SearchPage = lazy(() =>
+  import("./pages/SearchPage").then((module) => ({
+    default: module.SearchPage,
+  }))
+);
+const ErrorPage = lazy(() =>
+  import("./pages/ErrorPage").then((module) => ({ default: module.ErrorPage }))
+);
+const LoginPage = lazy(() =>
+  import("./pages/LoginPage").then((module) => ({ default: module.LoginPage }))
+);
+const RegisterPage = lazy(() =>
+  import("./pages/RegisterPage").then((module) => ({
+    default: module.RegisterPage,
+  }))
+);
+const ContactPage = lazy(() =>
+  import("./pages/ContactPage").then((module) => ({
+    default: module.ContactPage,
+  }))
+);
+const CareersPage = lazy(() =>
+  import("./pages/CareersPage").then((module) => ({
+    default: module.CareersPage,
+  }))
+);
+const SellPage = lazy(() =>
+  import("./pages/SellPage").then((module) => ({ default: module.SellPage }))
+);
 
 export function AppRoutes() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} errorElement={<ErrorPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/contact" element={<ContactPage />} />
-      <Route path="/careers" element={<CareersPage />} />
-      <Route path="/sell" element={<SellPage />} />
-      
-      <Route
-        path="/search"
-        element={
-          <ProtectedRoute>
-            <SearchPage />
-          </ProtectedRoute>
-        }
-      />
-      
-      <Route
-        path="/properties/:id"
-        element={
-          <ProtectedRoute>
-            <PropertyDetailPage />
-          </ProtectedRoute>
-        }
-      />
-      
-      <Route
-        path="/estimate"
-        element={
-          <ProtectedRoute>
-            <EstimatePage />
-          </ProtectedRoute>
-        }
-      />
-      
-      <Route
-        path="/invest"
-        element={
-          <ProtectedRoute>
-            <InvestPage />
-          </ProtectedRoute>
-        }
-      />
+    <Suspense fallback={<LoadingSpinner />}>
+      <Routes>
+        <Route path="/" element={<HomePage />} errorElement={<ErrorPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/careers" element={<CareersPage />} />
+        <Route path="/sell" element={<SellPage />} />
+        <Route path="/invest" element={<InvestPage />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/properties/:id" element={<PropertyDetailPage />} />
+        <Route path="/estimate" element={<EstimatePage />} />
 
-      <Route path="*" element={<ErrorPage />} />
-    </Routes>
+        {/* <Route
+          path="/invest"
+          element={
+            <ProtectedRoute>
+              <InvestPage />
+            </ProtectedRoute>
+          }
+        /> */}
+
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+    </Suspense>
   );
 }
