@@ -4,15 +4,13 @@ import { Property } from '@/types/property';
 
 interface PropertyMapProps {
   properties: Property[];
-  center?: { lat: number; lng: number };
-  zoom?: number;
-  onMarkerClick?: (property: Property) => void;
+  selectedProperty?: Property | null;
+  onMarkerClick: (property: Property) => void;
 }
 
 export function PropertyMap({
   properties,
-  center,
-  zoom = 12,
+  selectedProperty,
   onMarkerClick,
 }: PropertyMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
@@ -29,14 +27,14 @@ export function PropertyMap({
       try {
         const google = await loader.load();
         if (mapRef.current) {
-          const mapCenter = center || {
+          const mapCenter = {
             lat: properties[0]?.location.latitude || 48.8566,
             lng: properties[0]?.location.longitude || 2.3522,
           };
 
           const map = new google.maps.Map(mapRef.current, {
             center: mapCenter,
-            zoom,
+            zoom: 12,
             styles: [
               {
                 featureType: 'poi',
@@ -76,7 +74,7 @@ export function PropertyMap({
     };
 
     initMap();
-  }, [properties, center, zoom, onMarkerClick]);
+  }, [properties, selectedProperty, onMarkerClick]);
 
   return <div ref={mapRef} className="w-full h-full rounded-lg" />;
 }

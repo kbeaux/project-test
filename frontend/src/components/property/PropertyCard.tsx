@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
-import { Building2, MapPin, ArrowRightCircle } from 'lucide-react';
-import { Property } from '@/types/property';
-import { PropertyCompareButton } from './PropertyCompareButton';
-import { cn } from '@/lib/utils';
-import { useImageUrl } from '@/hooks/useImageUrl';
+import { Link } from "react-router-dom";
+import { Building2, MapPin, ArrowRightCircle } from "lucide-react";
+import { Property } from "@/types/property";
+import { PropertyCompareButton } from "./PropertyCompareButton";
+import { cn } from "@/lib/utils";
+import { useImageUrl } from "@/hooks/useImageUrl";
+import { useTranslation } from "react-i18next";
 
 interface PropertyCardProps {
   property: Property;
@@ -22,6 +23,7 @@ export function PropertyCard({
   onClick,
   className,
 }: PropertyCardProps) {
+  const { t } = useTranslation();
   const { getImageUrl } = useImageUrl();
   const handleCompareClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -54,14 +56,16 @@ export function PropertyCard({
         {onCompare && (
           <div className="absolute top-4 right-4">
             <PropertyCompareButton
-              onClick={(e?: React.MouseEvent) => handleCompareClick(e as React.MouseEvent)}
+              onClick={(e?: React.MouseEvent) =>
+                handleCompareClick(e as React.MouseEvent)
+              }
               isComparing={isComparing || false}
               disabled={disableCompare}
             />
           </div>
         )}
       </div>
-      
+
       <div className="p-4">
         <div className="flex items-start justify-between">
           <div>
@@ -85,14 +89,18 @@ export function PropertyCard({
         <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
           <div className="flex items-center">
             <Building2 className="h-4 w-4 text-gray-400 mr-1" />
-            <span className="text-sm text-gray-500">{property.surface}m²</span>
+            <span className="text-sm text-gray-500">
+              {t("property.squareMeters", { value: property.surface })}
+            </span>
           </div>
           <div className="text-right">
             <span className="text-lg font-semibold text-blue-600">
-              €{property.price.toLocaleString()}
+              {property.price
+                ? `${property.price}€`
+                : t("property.priceOnRequest")}
             </span>
-            {property.transactionType === 'RENT' && (
-              <span className="text-sm text-gray-500">/month</span>
+            {property.transactionType === "RENT" && (
+              <span className="text-sm text-gray-500">{t("/month")}</span>
             )}
           </div>
         </div>

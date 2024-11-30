@@ -1,0 +1,15 @@
+{
+  "property": {
+    "price": "Price",
+    "surface": "Area",
+    "rooms": "Rooms",
+    "city": "City",
+    "priceOnRequest": "Price on request",
+    "squareMeters": "{{value}} sqm"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry"
+  }
+} 

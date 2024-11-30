@@ -1,0 +1,15 @@
+{
+  "property": {
+    "price": "Prix",
+    "surface": "Surface",
+    "rooms": "Pièces",
+    "city": "Ville",
+    "priceOnRequest": "Prix sur demande",
+    "squareMeters": "{{value}} m²"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue",
+    "retry": "Réessayer"
+  }
+} 

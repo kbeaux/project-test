@@ -1,5 +1,6 @@
 import { Heart } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useTranslation } from 'react-i18next';
 
 interface PropertyFavoriteButtonProps {
   onClick: () => void;
@@ -14,6 +15,7 @@ export function PropertyFavoriteButton({
   disabled,
   className,
 }: PropertyFavoriteButtonProps) {
+  const { t } = useTranslation();
   return (
     <button
       onClick={onClick}
@@ -26,7 +28,7 @@ export function PropertyFavoriteButton({
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
-      aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+      aria-label={isFavorite ? t('Remove from favorites') : t('Add to favorites')}
     >
       <Heart
         className={cn(
