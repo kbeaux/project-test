@@ -49,7 +49,7 @@ export function validateGeoParams(lat?: number, lng?: number, radius?: number): 
 
 export function validateCategory(category?: string): void {
   if (category && !Object.values(PropertyCategory).includes(category as PropertyCategory)) {
-    throw new BadRequestException('Invalid property category');
+    throw new BadRequestException('Invalid property.category');
   }
 }
 

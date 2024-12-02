@@ -42,7 +42,7 @@ export class PropertyService {
     });
   }
 
-  async findRecent(limit = 8): Promise<Property[]> {
+  async findRecent(limit = 16): Promise<Property[]> {
     return this.propertyRepository.find({
       relations: ['agency'],
       order: { updatedAt: 'DESC' },

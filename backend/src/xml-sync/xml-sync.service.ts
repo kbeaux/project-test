@@ -12,6 +12,10 @@ import * as fs from "fs/promises";
 import * as path from "path";
 import * as crypto from "crypto";
 import * as sharp from "sharp";
+import { Room } from "../property/entities/room.entity";
+import { Document } from "../property/entities/document.entity";
+import { Address } from "../property/entities/address.entity";
+import { Contact } from "../property/entities/contact.entity";
 
 @Injectable()
 export class XmlSyncService {
@@ -34,6 +38,14 @@ export class XmlSyncService {
     private configService: ConfigService,
     @InjectRepository(Property)
     private propertyRepository: Repository<Property>,
+    @InjectRepository(Room)
+    private roomRepository: Repository<Room>,
+    @InjectRepository(Document)
+    private documentRepository: Repository<Document>,
+    @InjectRepository(Address)
+    private addressRepository: Repository<Address>,
+    @InjectRepository(Contact)
+    private contactRepository: Repository<Contact>,
     @InjectRepository(Agency)
     private agencyRepository: Repository<Agency>
   ) {
@@ -127,7 +139,7 @@ export class XmlSyncService {
   }
 
   @Cron(CronExpression.EVERY_HOUR)
-  //   @Cron("*/30 * * * * *")
+  // @Cron("*/30 * * * * *")
   async syncData() {
     try {
       this.logger.log("########### Starting XML sync... ###########");
@@ -341,12 +353,32 @@ export class XmlSyncService {
 
   private async processProperty(propertyData: PropertyXmlDto) {
     try {
-      // Télécharger et sauvegarder les images
-      const savedImages = await this.processImages(propertyData.Documents);
       // Vérifier si la propriété existe
       let property = await this.propertyRepository.findOne({
         where: { ref: propertyData.ID },
+        relations: ["rooms", "documents", "address", "contacts"],
       });
+
+      // Créer ou mettre à jour l'adresse
+      const address = await this.processAddress(
+        propertyData.BienAddress,
+        property?.address
+      );
+
+      // Traiter les documents/images
+      const documents = await this.processDocuments(
+        propertyData.Documents,
+        property?.documents
+      );
+
+      // Traiter les pièces
+      const rooms = await this.processRooms(propertyData.Room, property?.rooms);
+
+      // Traiter les contacts
+      const contacts = await this.processContacts(
+        propertyData.BienContact,
+        property?.contacts
+      );
 
       // Préparer les données de la propriété
       const propertyEntity = {
@@ -359,48 +391,323 @@ export class XmlSyncService {
         price: propertyData.SoldPrice?._,
         rentalPrice: propertyData.RentalPrice
           ? {
-              period: propertyData.RentalPrice.period,
-              amount: propertyData.RentalPrice.RentExclCharges?.amount?.[0]?._,
+              period: propertyData.RentalPrice.period as "MONTHLY" | "ANNUAL",
+              amount:
+                propertyData.RentalPrice.RentExclCharges?.amount?.[0]?._ || 0,
               currency:
-                propertyData.RentalPrice.RentExclCharges?.amount?.[0]?.currency,
+                propertyData.RentalPrice.RentExclCharges?.amount?.[0]
+                  ?.currency || "EUR",
             }
-          : null,
+          : undefined,
         agencyFees: propertyData.AgencyFees
           ? {
-              paidBy: propertyData.AgencyFees.paidBy,
-              amount: propertyData.AgencyFees.BuyerFees?.amount?.[0]?._,
+              paidBy: propertyData.AgencyFees.paidBy as "OWNER" | "TENANT",
+              amount: propertyData.AgencyFees.BuyerFees?.amount?.[0]?._ || 0,
             }
-          : null,
-        location: {
-          address: propertyData.BienAddress?.Zipcode,
-          city: propertyData.BienAddress?.CityRichTypo,
-          zipCode: propertyData.BienAddress?.Zipcode?.toString(),
-          // Si vous avez des coordonnées, les ajouter ici
+          : undefined,
+        mandatNum: propertyData.MandatNum,
+        mandatBeginDate: propertyData.MandatBeginDate,
+        mandatEndDate: propertyData.MandatEndDate,
+        mandatEndFirstPeriodDate: propertyData.MandatEndFirstPeriodDate,
+        mandatInfo: {
+          isExclusive: propertyData.IsExclusif?._ === "true",
+          isCoExclusive: propertyData.IsExclusif?.CoExclu === "true",
+          isSemiExclusive: propertyData.IsExclusif?.SemiExclu === "true",
         },
-        images: savedImages,
-        description: propertyData.Descriptions?.Description?._ || "",
-        features: [], // À adapter selon vos besoins
+        dpe: propertyData.DPE
+          ? {
+              dateDiagnostic: new Date(propertyData.DPE.dateDiagnostic),
+              pe: propertyData.DPE.PE || 0,
+              pe_letter: propertyData.DPE.PE_letter || "N/A",
+              ges: propertyData.DPE.GES || 0,
+              ges_letter: propertyData.DPE.GES_letter || "N/A",
+              annualEnergyCosts: {
+                lowRange:
+                  propertyData.DPE.AnnualEnergyCostsLowRange?.amount?._ || 0,
+                highRange:
+                  propertyData.DPE.AnnualEnergyCostsHighRange?.amount?._ || 0,
+                currency:
+                  propertyData.DPE.AnnualEnergyCostsLowRange?.amount
+                    ?.currency || "EUR",
+              },
+              costEstimateBaseYear:
+                propertyData.DPE.CostEstimateBaseYear ||
+                new Date().getFullYear(),
+            }
+          : undefined,
+        description: Array.isArray(propertyData.Descriptions?.Description)
+          ? propertyData.Descriptions?.Description[0]?._
+          : propertyData.Descriptions?.Description?._ || "",
+        // ... autres champs de la propriété ...
       };
 
       if (property) {
-        // Update existing property
-        await this.propertyRepository.update(
-          property.id,
-          propertyEntity as unknown as Partial<Property>
-        );
-        this.logger.log(`Updated property ${property.ref}`);
+        // Mise à jour de la propriété existante
+        await this.propertyRepository.update(property.id, propertyEntity);
+        property = await this.propertyRepository.findOne({
+          where: { id: property.id },
+        });
       } else {
-        // Create new property
-        property = this.propertyRepository.create(
-          propertyEntity as unknown as Partial<Property>
-        );
-        await this.propertyRepository.save(property);
-        this.logger.log(`Created new property ${property.ref}`);
+        // Création d'une nouvelle propriété
+        property = this.propertyRepository.create(propertyEntity);
+        property = await this.propertyRepository.save(property);
       }
+
+      if (!property) {
+        throw new Error("Failed to create/update property");
+      }
+
+      // Associer les relations
+      property.address = address;
+      property.rooms = rooms;
+      property.documents = documents;
+      property.contacts = contacts;
+
+      // Sauvegarder la propriété avec ses relations
+      await this.propertyRepository.save(property);
 
       return property;
     } catch (error) {
       this.logger.error(`Error processing property ${propertyData.ID}:`, error);
+      throw error;
+    }
+  }
+
+  private async processAddress(
+    addressData: any,
+    existingAddress?: Address
+  ): Promise<Address> {
+    // Logique pour créer ou mettre  jour une adresse
+    const addressEntity = {
+      streetNumber: addressData?.VoieNumber,
+      streetName: addressData?.VoieName,
+      zipCode: addressData?.Zipcode,
+      city: addressData?.ZipcodeCity,
+      cityRichTypo: addressData?.CityRichTypo,
+      altCode: addressData?.AltCode,
+      country: addressData?.country || "FR",
+      latitude: addressData?.lat,
+      longitude: addressData?.long,
+      // ... autres champs de l'adresse ...
+    };
+
+    if (existingAddress) {
+      await this.addressRepository.update(existingAddress.id, addressEntity);
+      const updatedAddress = await this.addressRepository.findOne({
+        where: { id: existingAddress.id },
+      });
+      if (!updatedAddress) {
+        throw new Error(
+          `Failed to find updated address with id ${existingAddress.id}`
+        );
+      }
+      return updatedAddress;
+    }
+
+    const newAddress = this.addressRepository.create(addressEntity);
+    return this.addressRepository.save(newAddress);
+  }
+
+  private async processRooms(
+    roomsData: any[] = [],
+    existingRooms: Room[] = []
+  ): Promise<Room[]> {
+    try {
+      const rooms: Room[] = [];
+
+      // Convertir roomsData en tableau s'il ne l'est pas déjà
+      const roomsArray = Array.isArray(roomsData)
+        ? roomsData
+        : [roomsData].filter(Boolean);
+
+      for (const roomData of roomsArray) {
+        const roomEntity = {
+          type: roomData.type,
+          surface: roomData.surface,
+          description: roomData.description,
+          level: roomData.level,
+        };
+
+        // Chercher une pièce existante correspondante
+        const existingRoom = existingRooms.find(
+          (room) => room.type === roomData.type && room.level === roomData.level
+        );
+
+        if (existingRoom) {
+          // Mettre à jour la pièce existante
+          await this.roomRepository.update(existingRoom.id, roomEntity);
+          const updatedRoom = await this.roomRepository.findOne({
+            where: { id: existingRoom.id },
+          });
+          if (updatedRoom) rooms.push(updatedRoom);
+        } else {
+          // Créer une nouvelle pièce
+          const newRoom = this.roomRepository.create(roomEntity);
+          const savedRoom = await this.roomRepository.save(newRoom);
+          rooms.push(savedRoom);
+        }
+      }
+
+      // Supprimer les pièces qui n'existent plus dans le XML
+      const roomsToDelete = existingRooms.filter(
+        (existingRoom) => !rooms.find((room) => room.id === existingRoom.id)
+      );
+
+      if (roomsToDelete.length > 0) {
+        await this.roomRepository.remove(roomsToDelete);
+      }
+
+      return rooms;
+    } catch (error) {
+      this.logger.error("Error processing rooms:", error);
+      throw error;
+    }
+  }
+
+  private async processDocuments(
+    documentsData: any,
+    existingDocuments: Document[] = []
+  ): Promise<Document[]> {
+    try {
+      const documents: Document[] = [];
+
+      // Convertir documentsData en tableau s'il ne l'est pas déjà
+      const documentsArray = Array.isArray(documentsData?.Document)
+        ? documentsData.Document
+        : [documentsData?.Document].filter(Boolean);
+
+      for (const docData of documentsArray) {
+        // Télécharger et optimiser l'image si c'est un document de type Image
+        let savedPaths: string[] = [];
+        if (docData.type === "Image" && docData.Filename) {
+          savedPaths = await this.downloadAndSaveImage(docData.Filename);
+        }
+
+        const documentEntity = {
+          type: docData.type,
+          format: docData.format,
+          filename: savedPaths[0] || docData.Filename, // Utiliser le premier chemin sauvegardé ou l'URL originale
+          title: docData.Title,
+          md5: docData.md5,
+        };
+
+        // Chercher un document existant correspondant
+        const existingDoc = existingDocuments.find(
+          (doc) => doc.md5 === docData.md5 || doc.filename === docData.Filename
+        );
+
+        if (existingDoc) {
+          // Mettre à jour le document existant
+          await this.documentRepository.update(existingDoc.id, documentEntity);
+          const updatedDoc = await this.documentRepository.findOne({
+            where: { id: existingDoc.id },
+          });
+          if (updatedDoc) documents.push(updatedDoc);
+        } else {
+          // Créer un nouveau document
+          const newDoc = this.documentRepository.create(documentEntity);
+          const savedDoc = await this.documentRepository.save(newDoc);
+          documents.push(savedDoc);
+        }
+      }
+
+      // Supprimer les documents qui n'existent plus dans le XML
+      const docsToDelete = existingDocuments.filter(
+        (existingDoc) => !documents.find((doc) => doc.id === existingDoc.id)
+      );
+
+      if (docsToDelete.length > 0) {
+        await this.documentRepository.remove(docsToDelete);
+      }
+
+      return documents;
+    } catch (error) {
+      this.logger.error("Error processing documents:", error);
+      throw error;
+    }
+  }
+
+  private processPhones(phoneData: any): { type: string; number: string; }[] {
+    if (!phoneData) return [];
+    
+    try {
+      const phones = Array.isArray(phoneData) ? phoneData : [phoneData].filter(Boolean);
+      return phones.map(phone => ({
+        type: phone.type || 'default',
+        number: phone._text || phone.toString(),
+      }));
+    } catch (error) {
+      this.logger.error('Error processing phones:', error);
+      return [];
+    }
+  }
+
+  private async processContacts(contactsData: any, existingContacts: Contact[] = []): Promise<Contact[]> {
+    try {
+      const contacts: Contact[] = [];
+      
+      // Convertir contactsData en tableau s'il ne l'est pas déjà
+      const contactsArray = Array.isArray(contactsData) 
+        ? contactsData 
+        : [contactsData].filter(Boolean);
+
+      for (const contactData of contactsArray) {
+        const contactEntity = {
+          externRef: contactData.externRef || '',
+          title: contactData.Title || 'N/A',
+          firstName: contactData.FName || '',
+          lastName: contactData.LName || '',
+          phones: this.processPhones(contactData.Phone),
+          email: contactData.Email || '',
+          rsac: contactData.RSAC || '',
+          isIndependent: contactData.is_independant === 'true',
+          address: contactData.Address ? {
+            streetNumber: contactData.Address.VoieNumber || '',
+            streetName: contactData.Address.VoieName || '',
+            zipCode: contactData.Address.Zipcode || '',
+            city: contactData.Address.ZipcodeCity || '',
+            country: contactData.Address.country || 'FR',
+          } : undefined,
+        };
+
+        // Chercher un contact existant correspondant
+        const existingContact = existingContacts.find(
+          (contact) => contact.externRef === contactData.externRef
+        );
+
+        if (existingContact) {
+          // Mettre à jour le contact existant
+          await this.contactRepository.update(
+            existingContact.id,
+            contactEntity
+          );
+          const updatedContact = await this.contactRepository.findOne({
+            where: { id: existingContact.id },
+          });
+          if (updatedContact) contacts.push(updatedContact);
+        } else {
+          // Créer un nouveau contact
+          const newContact = this.contactRepository.create(contactEntity);
+          const savedContact = await this.contactRepository.save(newContact);
+          if (savedContact) {
+            contacts.push(savedContact);
+          }
+        }
+      }
+
+      // Supprimer les contacts qui n'existent plus dans le XML
+      const contactsToDelete = existingContacts.filter(
+        (existingContact) =>
+          !contacts.find((contact) => contact.id === existingContact.id)
+      );
+
+      if (contactsToDelete.length > 0) {
+        await this.contactRepository.remove(contactsToDelete);
+      }
+
+      return contacts;
+    } catch (error) {
+      this.logger.error('Error processing contacts:', error);
       throw error;
     }
   }
