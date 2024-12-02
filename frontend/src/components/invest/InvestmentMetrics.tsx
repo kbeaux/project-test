@@ -1,4 +1,4 @@
-import { BarChart, TrendingUp, Building2 } from 'lucide-react';
+import { BarChart, TrendingUp, Building2 } from "lucide-react";
 
 interface InvestmentMetricsProps {
   metrics: {
@@ -11,22 +11,22 @@ interface InvestmentMetricsProps {
 export function InvestmentMetrics({ metrics }: InvestmentMetricsProps) {
   const items = [
     {
-      label: 'Average ROI',
+      label: "Average ROI",
       value: `${metrics.roi}%`,
       icon: BarChart,
-      description: 'Annual return on investment',
+      description: "Annual return on investment",
     },
     {
-      label: 'Market Growth',
+      label: "Market Growth",
       value: `+${metrics.marketGrowth}%`,
       icon: TrendingUp,
-      description: 'Year over year appreciation',
+      description: "Year over year appreciation",
     },
     {
-      label: 'Properties Available',
+      label: "Properties Available",
       value: metrics.availableProperties.toString(),
       icon: Building2,
-      description: 'Premium investment opportunities',
+      description: "Premium investment opportunities",
     },
   ];
 

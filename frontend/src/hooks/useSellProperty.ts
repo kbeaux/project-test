@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { submitProperty, PropertySubmission } from '@/lib/api/sell';
+import { useState } from "react";
+import { submitProperty, PropertySubmission } from "@/lib/api/sell";
 
 export function useSellProperty() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -13,8 +13,8 @@ export function useSellProperty() {
       await submitProperty(data);
       setSuccess(true);
     } catch (err) {
-      setError('Failed to submit property. Please try again.');
-      console.error('Property submission error:', err);
+      setError("Failed to submit property. Please try again.");
+      console.error("Property submission error:", err);
       throw err;
     } finally {
       setIsSubmitting(false);

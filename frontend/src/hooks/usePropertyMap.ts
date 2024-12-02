@@ -1,9 +1,14 @@
-import { useState, useCallback } from 'react';
-import { Property } from '@/types/property';
+import { useState, useCallback } from "react";
+import { Property } from "@/types/property";
 
 export function usePropertyMap() {
-  const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
-  const [mapCenter, setMapCenter] = useState<{ lat: number; lng: number } | null>(null);
+  const [selectedProperty, setSelectedProperty] = useState<Property | null>(
+    null,
+  );
+  const [mapCenter, setMapCenter] = useState<{
+    lat: number;
+    lng: number;
+  } | null>(null);
   const [mapZoom, setMapZoom] = useState(12);
 
   const centerOnProperty = useCallback((property: Property) => {

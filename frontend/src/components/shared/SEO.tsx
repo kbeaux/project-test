@@ -1,10 +1,10 @@
-import { Helmet } from 'react-helmet-async'
+import { Helmet } from "react-helmet-async";
 
 interface SEOProps {
-  title: string
-  description: string
-  keywords?: string
-  image?: string
+  title: string;
+  description: string;
+  keywords?: string;
+  image?: string;
 }
 
 export default function SEO({ title, description, keywords, image }: SEOProps) {
@@ -17,5 +17,5 @@ export default function SEO({ title, description, keywords, image }: SEOProps) {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
     </Helmet>
-  )
+  );
 }

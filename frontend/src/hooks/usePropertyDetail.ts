@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { getPropertyById, getNearbyProperties } from '@/lib/api/property';
-import { Property } from '@/types/property';
+import { useState, useEffect } from "react";
+import { getPropertyById, getNearbyProperties } from "@/lib/api/property";
+import { Property } from "@/types/property";
 
 export function usePropertyDetail(id: string) {
   const [property, setProperty] = useState<Property | null>(null);
@@ -13,7 +13,7 @@ export function usePropertyDetail(id: string) {
       try {
         setIsLoading(true);
         setError(null);
-        
+
         const data = await getPropertyById(id);
         setProperty(data);
 
@@ -22,13 +22,13 @@ export function usePropertyDetail(id: string) {
           const nearby = await getNearbyProperties(
             data.location.latitude,
             data.location.longitude,
-            2 // 2km radius
+            2, // 2km radius
           );
-          setNearbyProperties(nearby.filter(p => p.id !== data.id));
+          setNearbyProperties(nearby.filter((p) => p.id !== data.id));
         }
       } catch (err) {
-        setError('Failed to load property details');
-        console.error('Error loading property:', err);
+        setError("Failed to load property details");
+        console.error("Error loading property:", err);
       } finally {
         setIsLoading(false);
       }

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Property } from '@/types/property';
+import { useState } from "react";
+import { Property } from "@/types/property";
 
 const MAX_COMPARE_ITEMS = 4;
 
@@ -10,17 +10,17 @@ export function usePropertyCompare() {
     if (compareList.length >= MAX_COMPARE_ITEMS) {
       return false;
     }
-    
-    if (!compareList.find(p => p.id === property.id)) {
-      setCompareList(current => [...current, property]);
+
+    if (!compareList.find((p) => p.id === property.id)) {
+      setCompareList((current) => [...current, property]);
       return true;
     }
-    
+
     return false;
   };
 
   const removeFromCompare = (propertyId: string) => {
-    setCompareList(current => current.filter(p => p.id !== propertyId));
+    setCompareList((current) => current.filter((p) => p.id !== propertyId));
   };
 
   const clearCompare = () => {
@@ -28,7 +28,7 @@ export function usePropertyCompare() {
   };
 
   const isInCompare = (propertyId: string) => {
-    return compareList.some(p => p.id === propertyId);
+    return compareList.some((p) => p.id === propertyId);
   };
 
   return {

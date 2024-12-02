@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { searchProperties, SearchResponse } from '@/lib/api/search';
-import { PropertySearchParams } from '@/types/search';
+import { useState } from "react";
+import { searchProperties, SearchResponse } from "@/lib/api/search";
+import { PropertySearchParams } from "@/types/search";
 
 export function usePropertySearch() {
   const [isLoading, setIsLoading] = useState(false);
@@ -14,8 +14,8 @@ export function usePropertySearch() {
       const data = await searchProperties(params);
       setResults(data);
     } catch (err) {
-      setError('Failed to fetch properties');
-      console.error('Search error:', err);
+      setError("Failed to fetch properties");
+      console.error("Search error:", err);
     } finally {
       setIsLoading(false);
     }

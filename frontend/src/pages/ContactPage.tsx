@@ -1,12 +1,12 @@
-import { ContactForm } from '@/components/contact/ContactForm';
-import { GoogleMap } from '@/components/contact/GoogleMap';
-import { Building, Phone, Mail, Clock } from 'lucide-react';
+import { ContactForm } from "@/components/contact/ContactForm";
+import { GoogleMap } from "@/components/contact/GoogleMap";
+import { Building, Phone, Mail, Clock } from "lucide-react";
 
 const contactInfo = {
-  address: '123 Avenue des Champs-Élysées, 75008 Paris, France',
-  phone: '+33 1 23 45 67 89',
-  email: 'contact@realestatepro.com',
-  hours: 'Monday - Friday: 9:00 AM - 6:00 PM',
+  address: "123 Avenue des Champs-Élysées, 75008 Paris, France",
+  phone: "+33 1 23 45 67 89",
+  email: "contact@realestatepro.com",
+  hours: "Monday - Friday: 9:00 AM - 6:00 PM",
   location: {
     lat: 48.8566,
     lng: 2.3522,
@@ -75,7 +75,9 @@ export function ContactPage() {
 
         {/* Map */}
         <div className="bg-white rounded-lg shadow-sm p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Our Location</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            Our Location
+          </h2>
           <div className="h-[400px] rounded-lg overflow-hidden">
             <GoogleMap
               center={contactInfo.location}
@@ -83,7 +85,7 @@ export function ContactPage() {
               markers={[
                 {
                   position: contactInfo.location,
-                  title: 'RealEstate Pro Office',
+                  title: "RealEstate Pro Office",
                 },
               ]}
             />

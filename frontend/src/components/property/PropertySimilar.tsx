@@ -1,20 +1,24 @@
 import { useTranslation } from "react-i18next";
-import { Property } from '@/types/property';
-import { PropertyCard } from './PropertyCard';
+import { Property } from "@/types/property";
+import { PropertyCard } from "./PropertyCard";
 interface PropertySimilarProps {
   properties: Property[];
 }
-export function PropertySimilar({
-  properties
-}: PropertySimilarProps) {
+export function PropertySimilar({ properties }: PropertySimilarProps) {
   const { t } = useTranslation();
   if (properties.length === 0) {
     return null;
   }
-  return <div className="bg-white rounded-lg shadow-sm p-6">
-      <h2 className="text-lg font-semibold text-gray-900 mb-6">{t("similar.properties.nearby")}</h2>
+  return (
+    <div className="bg-white rounded-lg shadow-sm p-6">
+      <h2 className="text-lg font-semibold text-gray-900 mb-6">
+        {t("similar.properties.nearby")}
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {properties.slice(0, 4).map(property => <PropertyCard key={property.id} property={property} />)}
+        {properties.slice(0, 4).map((property) => (
+          <PropertyCard key={property.id} property={property} />
+        ))}
       </div>
-    </div>;
+    </div>
+  );
 }

@@ -1,4 +1,4 @@
-import api from '@/lib/axios';
+import api from "@/lib/axios";
 
 export interface ContactFormData {
   name: string;
@@ -8,5 +8,5 @@ export interface ContactFormData {
 }
 
 export async function sendContactMessage(data: ContactFormData): Promise<void> {
-  await api.post('/contact', data);
+  await api.post("/contact", data);
 }

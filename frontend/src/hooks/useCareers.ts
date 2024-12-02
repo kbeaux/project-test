@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { submitApplication, JobApplication } from '@/lib/api/careers';
+import { useState } from "react";
+import { submitApplication, JobApplication } from "@/lib/api/careers";
 
 export function useCareers() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -13,8 +13,8 @@ export function useCareers() {
       await submitApplication(application);
       setSuccess(true);
     } catch (err) {
-      setError('Failed to submit application. Please try again.');
-      console.error('Application error:', err);
+      setError("Failed to submit application. Please try again.");
+      console.error("Application error:", err);
       throw err;
     } finally {
       setIsSubmitting(false);

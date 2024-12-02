@@ -1,6 +1,6 @@
-import api from '@/lib/axios';
-import { PropertySearchParams } from '@/types/search';
-import { Property } from '@/types/property';
+import api from "@/lib/axios";
+import { PropertySearchParams } from "@/types/search";
+import { Property } from "@/types/property";
 
 export interface SearchResponse {
   data: Property[];
@@ -9,17 +9,19 @@ export interface SearchResponse {
   limit: number;
 }
 
-export async function searchProperties(params: PropertySearchParams): Promise<SearchResponse> {
-  const { data } = await api.get('/properties/search', { params });
+export async function searchProperties(
+  params: PropertySearchParams,
+): Promise<SearchResponse> {
+  const { data } = await api.get("/properties/search", { params });
   return data;
 }
 
 export async function getNearbyProperties(
   lat: number,
   lng: number,
-  radius: number = 5
+  radius: number = 5,
 ): Promise<Property[]> {
-  const { data } = await api.get('/properties/search/nearby', {
+  const { data } = await api.get("/properties/search/nearby", {
     params: { lat, lng, radius },
   });
   return data;

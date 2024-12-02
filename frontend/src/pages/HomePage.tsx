@@ -1,10 +1,10 @@
-import { useNavigate } from 'react-router-dom';
-import { VideoHero } from '@/components/home/VideoHero';
-import { FeaturedProperties } from '@/components/home/FeaturedProperties';
-import { MarketHighlights } from '@/components/home/MarketHighlights';
-import { FeaturedAgents } from '@/components/home/FeaturedAgents';
-import { CTASection } from '@/components/home/CTASection';
-import { PropertySearchParams } from '@/types/search';
+import { useNavigate } from "react-router-dom";
+import { VideoHero } from "@/components/home/VideoHero";
+import { FeaturedProperties } from "@/components/home/FeaturedProperties";
+import { MarketHighlights } from "@/components/home/MarketHighlights";
+import { FeaturedAgents } from "@/components/home/FeaturedAgents";
+import { CTASection } from "@/components/home/CTASection";
+import { PropertySearchParams } from "@/types/search";
 
 export function HomePage() {
   const navigate = useNavigate();

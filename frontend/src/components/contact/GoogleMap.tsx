@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { Loader } from '@googlemaps/js-api-loader';
+import { useEffect, useRef } from "react";
+import { Loader } from "@googlemaps/js-api-loader";
 
 interface Marker {
   position: {
@@ -24,16 +24,16 @@ export function GoogleMap({ center, zoom, markers = [] }: GoogleMapProps) {
 
   useEffect(() => {
     const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-    
+
     if (!apiKey) {
-      console.error('Google Maps API key is missing');
+      console.error("Google Maps API key is missing");
       return;
     }
 
     const initMap = async () => {
       const loader = new Loader({
         apiKey,
-        version: 'weekly',
+        version: "weekly",
       });
 
       try {
@@ -44,9 +44,9 @@ export function GoogleMap({ center, zoom, markers = [] }: GoogleMapProps) {
             zoom,
             styles: [
               {
-                featureType: 'poi',
-                elementType: 'labels',
-                stylers: [{ visibility: 'off' }],
+                featureType: "poi",
+                elementType: "labels",
+                stylers: [{ visibility: "off" }],
               },
             ],
           });
@@ -62,7 +62,7 @@ export function GoogleMap({ center, zoom, markers = [] }: GoogleMapProps) {
           });
         }
       } catch (error) {
-        console.error('Error loading Google Maps:', error);
+        console.error("Error loading Google Maps:", error);
       }
     };
 
@@ -70,10 +70,10 @@ export function GoogleMap({ center, zoom, markers = [] }: GoogleMapProps) {
   }, [center, zoom, markers]);
 
   return (
-    <div 
-      ref={mapRef} 
+    <div
+      ref={mapRef}
       className="w-full h-full rounded-lg"
-      style={{ minHeight: '400px' }}
+      style={{ minHeight: "400px" }}
     />
   );
 }

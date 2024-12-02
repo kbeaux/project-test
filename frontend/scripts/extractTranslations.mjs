@@ -13,6 +13,11 @@ const extractTranslations = async (dir) => {
     const content = await readFile(filePath, 'utf-8');
     
     const result = await babel.transformAsync(content, {
+      filename: filePath,
+      presets: [
+        '@babel/preset-typescript',
+        ['@babel/preset-react', { runtime: 'automatic' }]
+      ],
       plugins: [
         ['@babel/plugin-syntax-typescript', { isTSX: true }],
         [
@@ -23,9 +28,17 @@ const extractTranslations = async (dir) => {
             defaultNS: 'translation',
             keyAsDefaultValue: true,
             keyAsDefaultValueForDerivedKeys: true,
+            discardOldKeys: true,
+            useI18nextDefaultValue: true,
+            defaultContexts: [''],
+            keySeparator: false,
+            contextSeparator: '_',
           },
         ],
       ],
+      parserOpts: {
+        plugins: ['typescript', 'jsx']
+      }
     });
 
     if (result) {

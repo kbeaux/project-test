@@ -1,5 +1,5 @@
-import api from '@/lib/axios';
-import { Property } from '@/types/property';
+import api from "@/lib/axios";
+import { Property } from "@/types/property";
 
 export interface InvestmentMetrics {
   roi: number;
@@ -8,11 +8,13 @@ export interface InvestmentMetrics {
 }
 
 export async function getInvestmentProperties(): Promise<Property[]> {
-  const { data } = await api.get('/properties/investment');
+  const { data } = await api.get("/properties/investment");
   return data;
 }
 
-export async function getPropertyMetrics(propertyId: string): Promise<InvestmentMetrics> {
+export async function getPropertyMetrics(
+  propertyId: string,
+): Promise<InvestmentMetrics> {
   const { data } = await api.get(`/properties/${propertyId}/metrics`);
   return data;
 }
@@ -29,6 +31,6 @@ export async function calculateInvestmentReturn(params: {
   annualCashFlow: number;
   cashOnCashReturn: number;
 }> {
-  const { data } = await api.post('/properties/calculate-roi', params);
+  const { data } = await api.post("/properties/calculate-roi", params);
   return data;
 }

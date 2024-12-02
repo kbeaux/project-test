@@ -52,7 +52,7 @@ export function SearchFilters({
         },
         (error) => {
           console.error("Error getting location:", error);
-        }
+        },
       );
     } else {
       setValue("lat", null);
@@ -89,7 +89,7 @@ export function SearchFilters({
           </select>
           {errors.category && (
             <p className="mt-1 text-sm text-red-600">
-              {t('errors.category.message')}
+              {t("errors.category.message")}
             </p>
           )}
         </div>
@@ -134,7 +134,7 @@ export function SearchFilters({
                 "inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500",
                 useLocation
                   ? "bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100"
-                  : "bg-white text-gray-700 hover:bg-gray-50"
+                  : "bg-white text-gray-700 hover:bg-gray-50",
               )}
             >
               <MapPin className="h-4 w-4" />
@@ -158,7 +158,7 @@ export function SearchFilters({
           />
           {errors.zipCode && (
             <p className="mt-1 text-sm text-red-600">
-              {t('errors.zipCode.message')}
+              {t("errors.zipCode.message")}
             </p>
           )}
         </div>

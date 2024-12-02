@@ -1,20 +1,20 @@
-import { SellForm } from '@/components/sell/SellForm';
-import { Building2, Calculator, Users } from 'lucide-react';
+import { SellForm } from "@/components/sell/SellForm";
+import { Building2, Calculator, Users } from "lucide-react";
 
 const benefits = [
   {
-    title: 'Expert Valuation',
-    description: 'Get an accurate market value for your property',
+    title: "Expert Valuation",
+    description: "Get an accurate market value for your property",
     icon: Calculator,
   },
   {
-    title: 'Wide Network',
-    description: 'Access to qualified buyers and investors',
+    title: "Wide Network",
+    description: "Access to qualified buyers and investors",
     icon: Users,
   },
   {
-    title: 'Full Support',
-    description: 'Professional guidance throughout the process',
+    title: "Full Support",
+    description: "Professional guidance throughout the process",
     icon: Building2,
   },
 ];
@@ -28,7 +28,8 @@ export function SellPage() {
             Sell or Rent Your Property
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            List your commercial property with us and reach qualified buyers and tenants
+            List your commercial property with us and reach qualified buyers and
+            tenants
           </p>
         </div>
 

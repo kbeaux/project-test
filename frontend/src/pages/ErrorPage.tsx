@@ -1,10 +1,10 @@
-import { useRouteError, isRouteErrorResponse, Link } from 'react-router-dom';
-import { AlertTriangle, Home } from 'lucide-react';
+import { useRouteError, isRouteErrorResponse, Link } from "react-router-dom";
+import { AlertTriangle, Home } from "lucide-react";
 
 export function ErrorPage() {
   const error = useRouteError();
-  
-  let errorMessage = 'An unexpected error has occurred.';
+
+  let errorMessage = "An unexpected error has occurred.";
   let statusCode = 500;
 
   if (isRouteErrorResponse(error)) {
@@ -21,10 +21,10 @@ export function ErrorPage() {
           <AlertTriangle className="h-16 w-16 text-red-500" />
         </div>
         <h1 className="text-6xl font-bold text-gray-900 mb-4">
-          {statusCode === 404 ? '404' : statusCode}
+          {statusCode === 404 ? "404" : statusCode}
         </h1>
         <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-          {statusCode === 404 ? 'Page Not Found' : 'Error'}
+          {statusCode === 404 ? "Page Not Found" : "Error"}
         </h2>
         <p className="text-gray-600 mb-8">{errorMessage}</p>
         <Link

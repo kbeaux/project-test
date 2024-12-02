@@ -1,27 +1,29 @@
-import { useState } from 'react';
-import { JobList } from '@/components/careers/JobList';
-import { ApplicationForm } from '@/components/careers/ApplicationForm';
-import { Users, Briefcase, TrendingUp, Building } from 'lucide-react';
+import { useState } from "react";
+import { JobList } from "@/components/careers/JobList";
+import { ApplicationForm } from "@/components/careers/ApplicationForm";
+import { Users, Briefcase, TrendingUp, Building } from "lucide-react";
 
 const benefits = [
   {
-    title: 'Career Growth',
-    description: 'Clear career progression paths and continuous learning opportunities',
+    title: "Career Growth",
+    description:
+      "Clear career progression paths and continuous learning opportunities",
     icon: TrendingUp,
   },
   {
-    title: 'Team Environment',
-    description: 'Work with passionate professionals in a collaborative setting',
+    title: "Team Environment",
+    description:
+      "Work with passionate professionals in a collaborative setting",
     icon: Users,
   },
   {
-    title: 'Premium Portfolio',
-    description: 'Handle high-end commercial real estate properties',
+    title: "Premium Portfolio",
+    description: "Handle high-end commercial real estate properties",
     icon: Building,
   },
   {
-    title: 'Flexible Work',
-    description: 'Balance between office and remote work opportunities',
+    title: "Flexible Work",
+    description: "Balance between office and remote work opportunities",
     icon: Briefcase,
   },
 ];
@@ -29,44 +31,47 @@ const benefits = [
 const openPositions = [
   {
     id: 1,
-    title: 'Commercial Real Estate Agent',
-    department: 'Sales',
-    location: 'Paris',
-    type: 'Full-time',
-    description: 'Looking for experienced commercial real estate agents to join our growing team.',
+    title: "Commercial Real Estate Agent",
+    department: "Sales",
+    location: "Paris",
+    type: "Full-time",
+    description:
+      "Looking for experienced commercial real estate agents to join our growing team.",
     requirements: [
-      'Minimum 3 years of commercial real estate experience',
-      'Strong negotiation and communication skills',
-      'Valid real estate license',
-      'Fluent in French and English',
+      "Minimum 3 years of commercial real estate experience",
+      "Strong negotiation and communication skills",
+      "Valid real estate license",
+      "Fluent in French and English",
     ],
   },
   {
     id: 2,
-    title: 'Property Manager',
-    department: 'Operations',
-    location: 'Paris',
-    type: 'Full-time',
-    description: 'Seeking a property manager to oversee our commercial property portfolio.',
+    title: "Property Manager",
+    department: "Operations",
+    location: "Paris",
+    type: "Full-time",
+    description:
+      "Seeking a property manager to oversee our commercial property portfolio.",
     requirements: [
-      'Previous experience in commercial property management',
-      'Strong organizational and problem-solving skills',
-      'Knowledge of property management software',
-      'Excellent customer service skills',
+      "Previous experience in commercial property management",
+      "Strong organizational and problem-solving skills",
+      "Knowledge of property management software",
+      "Excellent customer service skills",
     ],
   },
   {
     id: 3,
-    title: 'Real Estate Market Analyst',
-    department: 'Research',
-    location: 'Remote',
-    type: 'Full-time',
-    description: 'Join our research team to analyze commercial real estate market trends.',
+    title: "Real Estate Market Analyst",
+    department: "Research",
+    location: "Remote",
+    type: "Full-time",
+    description:
+      "Join our research team to analyze commercial real estate market trends.",
     requirements: [
-      'Background in real estate, finance, or economics',
-      'Strong analytical and research skills',
-      'Proficiency in data analysis tools',
-      'Experience with market research',
+      "Background in real estate, finance, or economics",
+      "Strong analytical and research skills",
+      "Proficiency in data analysis tools",
+      "Experience with market research",
     ],
   },
 ];
@@ -83,8 +88,9 @@ export function CareersPage() {
             Join Our Team
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Be part of a dynamic team shaping the future of commercial real estate.
-            We're always looking for talented individuals to join our growing company.
+            Be part of a dynamic team shaping the future of commercial real
+            estate. We're always looking for talented individuals to join our
+            growing company.
           </p>
         </div>
 
@@ -126,11 +132,9 @@ export function CareersPage() {
 
           {/* Application Form */}
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Apply Now
-            </h2>
-            <ApplicationForm 
-              selectedJob={openPositions.find(job => job.id === selectedJob)} 
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Apply Now</h2>
+            <ApplicationForm
+              selectedJob={openPositions.find((job) => job.id === selectedJob)}
             />
           </div>
         </div>

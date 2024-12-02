@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
-import { InvestmentCalculator } from '@/components/invest/InvestmentCalculator';
-import { InvestmentOpportunities } from '@/components/invest/InvestmentOpportunities';
-import { InvestmentProcess } from '@/components/invest/InvestmentProcess';
-import { InvestmentFeatures } from '@/components/invest/InvestmentFeatures';
-import { InvestmentStats } from '@/components/invest/InvestmentStats';
-import { MarketTrends } from '@/components/invest/MarketTrends';
-import { useInvestment } from '@/hooks/useInvestment';
+import { useEffect } from "react";
+import { InvestmentCalculator } from "@/components/invest/InvestmentCalculator";
+import { InvestmentOpportunities } from "@/components/invest/InvestmentOpportunities";
+import { InvestmentProcess } from "@/components/invest/InvestmentProcess";
+import { InvestmentFeatures } from "@/components/invest/InvestmentFeatures";
+import { InvestmentStats } from "@/components/invest/InvestmentStats";
+import { MarketTrends } from "@/components/invest/MarketTrends";
+import { useInvestment } from "@/hooks/useInvestment";
 
 export function InvestPage() {
   const { loadProperties, properties, isLoading } = useInvestment();
@@ -23,8 +23,8 @@ export function InvestPage() {
             Investment Opportunities
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Discover prime commercial properties with excellent investment potential
-            in sought-after locations.
+            Discover prime commercial properties with excellent investment
+            potential in sought-after locations.
           </p>
         </div>
 

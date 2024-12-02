@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { sendContactMessage, ContactFormData } from '@/lib/api/contact';
+import { useState } from "react";
+import { sendContactMessage, ContactFormData } from "@/lib/api/contact";
 
 export function useContact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -13,8 +13,8 @@ export function useContact() {
       await sendContactMessage(data);
       setSuccess(true);
     } catch (err) {
-      setError('Failed to send message. Please try again.');
-      console.error('Contact error:', err);
+      setError("Failed to send message. Please try again.");
+      console.error("Contact error:", err);
       throw err;
     } finally {
       setIsSubmitting(false);

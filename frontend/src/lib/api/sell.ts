@@ -1,4 +1,4 @@
-import api from '@/lib/axios';
+import api from "@/lib/axios";
 
 export interface PropertySubmission {
   category: string;
@@ -16,10 +16,10 @@ export interface PropertySubmission {
 
 export async function submitProperty(data: PropertySubmission): Promise<void> {
   const formData = new FormData();
-  
+
   // Append property data
   Object.entries(data).forEach(([key, value]) => {
-    if (key !== 'images' && key !== 'location') {
+    if (key !== "images" && key !== "location") {
       formData.append(key, value.toString());
     }
   });
@@ -34,9 +34,9 @@ export async function submitProperty(data: PropertySubmission): Promise<void> {
     formData.append(`images[${index}]`, image);
   });
 
-  await api.post('/properties', formData, {
+  await api.post("/properties", formData, {
     headers: {
-      'Content-Type': 'multipart/form-data',
+      "Content-Type": "multipart/form-data",
     },
   });
 }

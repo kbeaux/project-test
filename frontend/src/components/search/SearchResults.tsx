@@ -20,7 +20,7 @@ export function SearchResults({
   const { t } = useTranslation();
   const [viewMode, setViewMode] = useState<"grid" | "map">("grid");
   const [selectedProperty, setSelectedProperty] = useState<Property | null>(
-    null
+    null,
   );
   const handlePropertyClick = (property: Property) => {
     setSelectedProperty(property);
@@ -61,7 +61,7 @@ export function SearchResults({
               "p-2 rounded-md",
               viewMode === "grid"
                 ? "bg-blue-50 text-blue-600"
-                : "text-gray-500 hover:text-gray-700"
+                : "text-gray-500 hover:text-gray-700",
             )}
           >
             <Grid className="h-5 w-5" />
@@ -72,7 +72,7 @@ export function SearchResults({
               "p-2 rounded-md",
               viewMode === "map"
                 ? "bg-blue-50 text-blue-600"
-                : "text-gray-500 hover:text-gray-700"
+                : "text-gray-500 hover:text-gray-700",
             )}
           >
             <MapPin className="h-5 w-5" />

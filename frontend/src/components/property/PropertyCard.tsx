@@ -38,7 +38,7 @@ export function PropertyCard({
       className={cn(
         "bg-white rounded-lg shadow-md overflow-hidden transition-shadow hover:shadow-lg",
         onClick && "cursor-pointer",
-        className
+        className,
       )}
       onClick={onClick}
     >

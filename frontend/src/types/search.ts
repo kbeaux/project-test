@@ -1,4 +1,4 @@
-import { PropertyCategory, TransactionType } from './property';
+import { PropertyCategory, TransactionType } from "./property";
 
 export interface PropertySearchParams {
   city?: string;

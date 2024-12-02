@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from "react";
 
 interface GeolocationState {
   lat?: number;
@@ -11,8 +11,8 @@ export function useGeolocation() {
 
   const getLocation = useCallback(() => {
     if (!navigator.geolocation) {
-      setState({ error: 'Geolocation is not supported by your browser' });
-      return Promise.reject(new Error('Geolocation not supported'));
+      setState({ error: "Geolocation is not supported by your browser" });
+      return Promise.reject(new Error("Geolocation not supported"));
     }
 
     return new Promise<GeolocationState>((resolve, reject) => {
@@ -26,10 +26,11 @@ export function useGeolocation() {
           resolve(newState);
         },
         (error) => {
-          const errorMessage = 'Failed to get your location';
+          const errorMessage = "Failed to get your location";
           setState({ error: errorMessage });
           reject(new Error(errorMessage));
-        }
+          console.error(errorMessage, error);
+        },
       );
     });
   }, []);

@@ -1,13 +1,13 @@
 export enum PropertyCategory {
-  COMMERCIAL = 'COMMERCIAL',
-  OFFICE = 'OFFICE',
-  RETAIL = 'RETAIL',
+  COMMERCIAL = "COMMERCIAL",
+  OFFICE = "OFFICE",
+  RETAIL = "RETAIL",
 }
 
 export enum TransactionType {
-  SALE = 'SALE',
-  RENT = 'RENT',
-  TRANSFER = 'TRANSFER',
+  SALE = "SALE",
+  RENT = "RENT",
+  TRANSFER = "TRANSFER",
 }
 
 export interface Property {
@@ -21,12 +21,12 @@ export interface Property {
   surface: number;
   price: number;
   rentalPrice?: {
-    period: 'MONTHLY' | 'ANNUAL';
+    period: "MONTHLY" | "ANNUAL";
     amount: number;
     currency: string;
   };
   agencyFees?: {
-    paidBy: 'OWNER' | 'TENANT';
+    paidBy: "OWNER" | "TENANT";
     amount: number;
   };
   heating?: {

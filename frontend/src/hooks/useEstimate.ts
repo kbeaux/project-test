@@ -1,5 +1,9 @@
-import { useState } from 'react';
-import { getPropertyEstimate, EstimateFormData, EstimateResult } from '@/lib/api/estimate';
+import { useState } from "react";
+import {
+  getPropertyEstimate,
+  EstimateFormData,
+  EstimateResult,
+} from "@/lib/api/estimate";
 
 export function useEstimate() {
   const [isLoading, setIsLoading] = useState(false);
@@ -14,8 +18,8 @@ export function useEstimate() {
       setResult(result);
       return result;
     } catch (err) {
-      setError('Failed to get property estimate');
-      console.error('Estimate error:', err);
+      setError("Failed to get property estimate");
+      console.error("Estimate error:", err);
       throw err;
     } finally {
       setIsLoading(false);

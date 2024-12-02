@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react';
-import { Loader } from '@googlemaps/js-api-loader';
-import { Property } from '@/types/property';
+import { useEffect, useRef } from "react";
+import { Loader } from "@googlemaps/js-api-loader";
+import { Property } from "@/types/property";
 
 interface PropertyMapProps {
   properties: Property[];
@@ -21,7 +21,7 @@ export function PropertyMap({
     const initMap = async () => {
       const loader = new Loader({
         apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
-        version: 'weekly',
+        version: "weekly",
       });
 
       try {
@@ -37,9 +37,9 @@ export function PropertyMap({
             zoom: 12,
             styles: [
               {
-                featureType: 'poi',
-                elementType: 'labels',
-                stylers: [{ visibility: 'off' }],
+                featureType: "poi",
+                elementType: "labels",
+                stylers: [{ visibility: "off" }],
               },
             ],
           });
@@ -47,7 +47,7 @@ export function PropertyMap({
           googleMapRef.current = map;
 
           // Clear existing markers
-          markersRef.current.forEach(marker => marker.setMap(null));
+          markersRef.current.forEach((marker) => marker.setMap(null));
           markersRef.current = [];
 
           // Add new markers
@@ -62,14 +62,14 @@ export function PropertyMap({
             });
 
             if (onMarkerClick) {
-              marker.addListener('click', () => onMarkerClick(property));
+              marker.addListener("click", () => onMarkerClick(property));
             }
 
             markersRef.current.push(marker);
           });
         }
       } catch (error) {
-        console.error('Error loading Google Maps:', error);
+        console.error("Error loading Google Maps:", error);
       }
     };
 

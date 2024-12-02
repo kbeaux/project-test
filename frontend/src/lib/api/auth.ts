@@ -1,4 +1,4 @@
-import api from '@/lib/axios';
+import api from "@/lib/axios";
 
 export interface LoginCredentials {
   email: string;
@@ -23,17 +23,19 @@ export interface AuthResponse {
   };
 }
 
-export async function login(credentials: LoginCredentials): Promise<AuthResponse> {
-  const { data } = await api.post('/auth/login', credentials);
+export async function login(
+  credentials: LoginCredentials,
+): Promise<AuthResponse> {
+  const { data } = await api.post("/auth/login", credentials);
   return data;
 }
 
 export async function register(userData: RegisterData): Promise<AuthResponse> {
-  const { data } = await api.post('/auth/register', userData);
+  const { data } = await api.post("/auth/register", userData);
   return data;
 }
 
 export async function getProfile() {
-  const { data } = await api.get('/auth/profile');
+  const { data } = await api.get("/auth/profile");
   return data;
 }

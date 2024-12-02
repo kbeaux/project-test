@@ -1,7 +1,7 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
-import { login as apiLogin, register as apiRegister } from './api/auth';
-import type { LoginCredentials, RegisterData } from './api/auth';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import { login as apiLogin, register as apiRegister } from "./api/auth";
+import type { LoginCredentials, RegisterData } from "./api/auth";
 
 interface AuthState {
   token: string | null;
@@ -49,7 +49,7 @@ export const useAuth = create<AuthState>()(
       },
     }),
     {
-      name: 'auth-storage',
+      name: "auth-storage",
     },
   ),
 );

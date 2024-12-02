@@ -1,8 +1,8 @@
-import api from '@/lib/axios';
-import { Property } from '@/types/property';
+import api from "@/lib/axios";
+import { Property } from "@/types/property";
 
 export async function getFavorites(): Promise<Property[]> {
-  const { data } = await api.get('/favorites');
+  const { data } = await api.get("/favorites");
   return data;
 }
 

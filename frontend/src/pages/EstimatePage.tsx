@@ -1,30 +1,30 @@
-import { useState } from 'react';
-import { EstimateForm } from '@/components/estimate/EstimateForm';
-import { Building2, TrendingUp, Clock, CheckCircle } from 'lucide-react';
+import { useState } from "react";
+import { EstimateForm } from "@/components/estimate/EstimateForm";
+import { Building2, TrendingUp, Clock, CheckCircle } from "lucide-react";
 
 const steps = [
   {
     id: 1,
-    name: 'Property Details',
-    description: 'Tell us about your property',
+    name: "Property Details",
+    description: "Tell us about your property",
     icon: Building2,
   },
   {
     id: 2,
-    name: 'Market Analysis',
-    description: 'We analyze market data',
+    name: "Market Analysis",
+    description: "We analyze market data",
     icon: TrendingUp,
   },
   {
     id: 3,
-    name: 'Processing',
-    description: 'Calculating estimate',
+    name: "Processing",
+    description: "Calculating estimate",
     icon: Clock,
   },
   {
     id: 4,
-    name: 'Results',
-    description: 'Get your estimate',
+    name: "Results",
+    description: "Get your estimate",
     icon: CheckCircle,
   },
 ];
@@ -37,11 +37,11 @@ export function EstimatePage() {
     try {
       // Simulate API call with steps
       setCurrentStep(2);
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
       setCurrentStep(3);
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
       setCurrentStep(4);
       setEstimateResult({
         estimatedPrice: Math.floor(Math.random() * (2000000 - 500000) + 500000),
@@ -53,7 +53,7 @@ export function EstimatePage() {
         comparables: 12,
       });
     } catch (error) {
-      console.error('Estimation error:', error);
+      console.error("Estimation error:", error);
     }
   };
 
@@ -65,7 +65,8 @@ export function EstimatePage() {
             Estimate Your Property Value
           </h1>
           <p className="text-lg text-gray-600">
-            Get an accurate estimate based on market data and property characteristics
+            Get an accurate estimate based on market data and property
+            characteristics
           </p>
         </div>
 
@@ -77,22 +78,20 @@ export function EstimatePage() {
                 <li
                   key={step.id}
                   className={`${
-                    stepIdx !== steps.length - 1 ? 'pr-8 sm:pr-20' : ''
+                    stepIdx !== steps.length - 1 ? "pr-8 sm:pr-20" : ""
                   } relative`}
                 >
                   <div className="flex items-center">
                     <div
                       className={`${
-                        step.id <= currentStep
-                          ? 'bg-blue-600'
-                          : 'bg-gray-200'
+                        step.id <= currentStep ? "bg-blue-600" : "bg-gray-200"
                       } h-12 w-12 rounded-full flex items-center justify-center`}
                     >
                       <step.icon
                         className={`${
                           step.id <= currentStep
-                            ? 'text-white'
-                            : 'text-gray-500'
+                            ? "text-white"
+                            : "text-gray-500"
                         } h-6 w-6`}
                         aria-hidden="true"
                       />
@@ -100,14 +99,12 @@ export function EstimatePage() {
                     {stepIdx !== steps.length - 1 && (
                       <div
                         className={`hidden sm:block absolute top-0 right-0 h-12 w-20 ${
-                          step.id < currentStep
-                            ? 'bg-blue-600'
-                            : 'bg-gray-200'
+                          step.id < currentStep ? "bg-blue-600" : "bg-gray-200"
                         }`}
                         style={{
-                          width: '100%',
-                          height: '2px',
-                          transform: 'translateX(2rem)',
+                          width: "100%",
+                          height: "2px",
+                          transform: "translateX(2rem)",
                         }}
                       />
                     )}
@@ -138,7 +135,7 @@ export function EstimatePage() {
                     €{estimateResult.estimatedPrice.toLocaleString()}
                   </p>
                 </div>
-                
+
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <p className="text-sm text-gray-500 mb-1">Price Range</p>
@@ -148,15 +145,20 @@ export function EstimatePage() {
                     </p>
                   </div>
                   <div className="bg-gray-50 p-4 rounded-lg">
-                    <p className="text-sm text-gray-500 mb-1">Confidence Score</p>
-                    <p className="font-semibold">{estimateResult.confidence}%</p>
+                    <p className="text-sm text-gray-500 mb-1">
+                      Confidence Score
+                    </p>
+                    <p className="font-semibold">
+                      {estimateResult.confidence}%
+                    </p>
                   </div>
                 </div>
 
                 <div className="border-t pt-6">
                   <p className="text-sm text-gray-500">
-                    This estimate is based on {estimateResult.comparables} comparable
-                    properties in your area sold in the last 12 months.
+                    This estimate is based on {estimateResult.comparables}{" "}
+                    comparable properties in your area sold in the last 12
+                    months.
                   </p>
                 </div>
 

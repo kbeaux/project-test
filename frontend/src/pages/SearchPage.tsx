@@ -1,16 +1,17 @@
-import { useState } from 'react';
-import { usePropertySearch } from '@/hooks/usePropertySearch';
-import { usePropertyCompare } from '@/hooks/usePropertyCompare';
-import { SearchBar } from '@/components/search/SearchBar';
-import { SearchFilters } from '@/components/search/SearchFilters';
-import { SearchResults } from '@/components/search/SearchResults';
-import { PropertyCompare } from '@/components/property/PropertyCompare';
-import { PropertySearchParams } from '@/types/search';
-import { Filter } from 'lucide-react';
+import { useState } from "react";
+import { usePropertySearch } from "@/hooks/usePropertySearch";
+import { usePropertyCompare } from "@/hooks/usePropertyCompare";
+import { SearchBar } from "@/components/search/SearchBar";
+import { SearchFilters } from "@/components/search/SearchFilters";
+import { SearchResults } from "@/components/search/SearchResults";
+import { PropertyCompare } from "@/components/property/PropertyCompare";
+import { PropertySearchParams } from "@/types/search";
+import { Filter } from "lucide-react";
 
 export function SearchPage() {
   const { search, results, isLoading, error } = usePropertySearch();
-  const { compareList, addToCompare, removeFromCompare, isInCompare, isFull } = usePropertyCompare();
+  const { compareList, addToCompare, removeFromCompare, isInCompare, isFull } =
+    usePropertyCompare();
   const [showFilters, setShowFilters] = useState(false);
 
   const handleSearch = (params: PropertySearchParams) => {
@@ -41,10 +42,7 @@ export function SearchPage() {
 
         {showFilters && (
           <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
-            <SearchFilters
-              onFilter={handleFilter}
-              onReset={() => search({})}
-            />
+            <SearchFilters onFilter={handleFilter} onReset={() => search({})} />
           </div>
         )}
 

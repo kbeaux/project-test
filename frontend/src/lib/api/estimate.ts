@@ -1,4 +1,4 @@
-import api from '@/lib/axios';
+import api from "@/lib/axios";
 
 export interface EstimateFormData {
   category: string;
@@ -29,7 +29,9 @@ export interface EstimateResult {
   comparables: number;
 }
 
-export async function getPropertyEstimate(data: EstimateFormData): Promise<EstimateResult> {
-  const { data: result } = await api.post('/properties/estimate', data);
+export async function getPropertyEstimate(
+  data: EstimateFormData,
+): Promise<EstimateResult> {
+  const { data: result } = await api.post("/properties/estimate", data);
   return result;
 }

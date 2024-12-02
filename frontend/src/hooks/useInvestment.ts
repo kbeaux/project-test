@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   getInvestmentProperties,
   getPropertyMetrics,
   calculateInvestmentReturn,
   InvestmentMetrics,
-} from '@/lib/api/invest';
-import { Property } from '@/types/property';
+} from "@/lib/api/invest";
+import { Property } from "@/types/property";
 
 export function useInvestment() {
   const [properties, setProperties] = useState<Property[]>([]);
@@ -20,8 +20,8 @@ export function useInvestment() {
       const data = await getInvestmentProperties();
       setProperties(data);
     } catch (err) {
-      setError('Failed to load investment properties');
-      console.error('Investment properties error:', err);
+      setError("Failed to load investment properties");
+      console.error("Investment properties error:", err);
     } finally {
       setIsLoading(false);
     }
@@ -34,8 +34,8 @@ export function useInvestment() {
       const data = await getPropertyMetrics(propertyId);
       setMetrics(data);
     } catch (err) {
-      setError('Failed to load property metrics');
-      console.error('Property metrics error:', err);
+      setError("Failed to load property metrics");
+      console.error("Property metrics error:", err);
     } finally {
       setIsLoading(false);
     }
@@ -54,8 +54,8 @@ export function useInvestment() {
       setError(null);
       return await calculateInvestmentReturn(params);
     } catch (err) {
-      setError('Failed to calculate investment return');
-      console.error('ROI calculation error:', err);
+      setError("Failed to calculate investment return");
+      console.error("ROI calculation error:", err);
       throw err;
     } finally {
       setIsLoading(false);

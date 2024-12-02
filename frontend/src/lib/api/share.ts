@@ -1,14 +1,14 @@
-import api from '@/lib/axios';
+import api from "@/lib/axios";
 
 export interface ShareData {
   propertyId: string;
   recipientEmail?: string;
   message?: string;
-  platform?: 'email' | 'facebook' | 'twitter' | 'linkedin';
+  platform?: "email" | "facebook" | "twitter" | "linkedin";
 }
 
 export async function shareProperty(data: ShareData): Promise<void> {
-  await api.post('/properties/share', data);
+  await api.post("/properties/share", data);
 }
 
 export function getShareUrl(propertyId: string): string {
