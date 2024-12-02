@@ -22,7 +22,7 @@ export function InvestmentStats() {
   return (
     <div className="bg-blue-600 rounded-lg shadow-lg p-8 text-white">
       <h2 className="text-2xl font-bold mb-8 text-center">
-        {t("our.investment.track.record")}
+        {t("our investment track record")}
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {stats.map((stat, index) => (

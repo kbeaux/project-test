@@ -48,7 +48,7 @@ export function SellForm() {
       {success && (
         <div className="rounded-md bg-green-50 p-4">
           <p className="text-sm text-green-600">
-            {t("property.submitted.successfully.")}
+            {t("submitted successfully.")}
           </p>
         </div>
       )}
@@ -62,7 +62,7 @@ export function SellForm() {
             {...register("category")}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           >
-            <option value="">{t("select.category")}</option>
+            <option value="">{t("select category")}</option>
             {Object.values(PropertyCategory).map((category) => (
               <option key={category} value={category}>
                 {category}
@@ -156,7 +156,7 @@ export function SellForm() {
           errors.location?.city ||
           errors.location?.zipCode) && (
           <p className="mt-1 text-sm text-red-600">
-            {t("please.fill.in.all.location.fields")}
+            {t("please fill in all location fields")}
           </p>
         )}
       </div>
@@ -199,10 +199,10 @@ export function SellForm() {
                   accept="image/*"
                 />
               </label>
-              <p className="pl-1">{t("or.drag.and.drop")}</p>
+              <p className="pl-1">{t("or drag and drop")}</p>
             </div>
             <p className="text-xs text-gray-500">
-              {t("png.jpg.gif.up.to.10mb.each")}
+              {t("png jpg gif up to 10mb each")}
             </p>
           </div>
         </div>

@@ -62,7 +62,7 @@ export function PropertyFilters({
                 {...register("category")}
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               >
-                <option value="">{t("all.categories")}</option>
+                <option value="">{t("all categories")}</option>
                 {Object.values(PropertyCategory).map((category) => (
                   <option key={category} value={category}>
                     {category}
@@ -79,7 +79,7 @@ export function PropertyFilters({
                 {...register("transactionType")}
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               >
-                <option value="">{t("all.types")}</option>
+                <option value="">{t("all types")}</option>
                 {Object.values(TransactionType).map((type) => (
                   <option key={type} value={type}>
                     {type}
@@ -133,7 +133,7 @@ export function PropertyFilters({
                 type="submit"
                 className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
-                {t("apply.filters")}
+                {t("apply filters")}
               </button>
               <button
                 type="button"

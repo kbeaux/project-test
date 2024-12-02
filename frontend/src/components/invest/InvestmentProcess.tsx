@@ -28,7 +28,7 @@ export function InvestmentProcess() {
   return (
     <div className="bg-white rounded-lg shadow-sm p-8">
       <h2 className="text-2xl font-bold text-gray-900 mb-8">
-        {t("investment.process")}
+        {t("investment process")}
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {steps.map((step, index) => (

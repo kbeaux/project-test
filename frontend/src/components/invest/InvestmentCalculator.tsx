@@ -63,7 +63,7 @@ export function InvestmentCalculator() {
       <div className="flex items-center mb-6">
         <Calculator className="h-6 w-6 text-blue-600 mr-2" />
         <h2 className="text-xl font-semibold text-gray-900">
-          {t("investment.calculator")}
+          {t("investment calculator")}
         </h2>
       </div>
 
@@ -90,7 +90,7 @@ export function InvestmentCalculator() {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            {t("down.payment.")}
+            {t("down payment.")}
           </label>
           <div className="relative">
             <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -110,7 +110,7 @@ export function InvestmentCalculator() {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            {t("interest.rate.")}
+            {t("interest rate.")}
           </label>
           <div className="relative">
             <Percent className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -131,7 +131,7 @@ export function InvestmentCalculator() {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            {t("loan.term.years.")}
+            {t("loan term years.")}
           </label>
           <div className="relative">
             <Clock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -151,7 +151,7 @@ export function InvestmentCalculator() {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            {t("monthly.rent.")}
+            {t("monthly rent.")}
           </label>
           <div className="relative">
             <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -171,7 +171,7 @@ export function InvestmentCalculator() {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            {t("monthly.expenses.")}
+            {t("monthly expenses.")}
           </label>
           <div className="relative">
             <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -194,25 +194,25 @@ export function InvestmentCalculator() {
         onClick={calculateResults}
         className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
       >
-        {t("calculate.roi")}
+        {t("calculate roi")}
       </button>
 
       {results && (
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="bg-gray-50 p-4 rounded-lg">
-            <p className="text-sm text-gray-500">{t("monthly.payment")}</p>
+            <p className="text-sm text-gray-500">{t("monthly payment")}</p>
             <p className="text-lg font-semibold">
               €{Math.round(results.monthlyPayment).toLocaleString()}
             </p>
           </div>
           <div className="bg-gray-50 p-4 rounded-lg">
-            <p className="text-sm text-gray-500">{t("annual.cash.flow")}</p>
+            <p className="text-sm text-gray-500">{t("annual cash flow")}</p>
             <p className="text-lg font-semibold">
               €{Math.round(results.annualCashFlow).toLocaleString()}
             </p>
           </div>
           <div className="bg-gray-50 p-4 rounded-lg">
-            <p className="text-sm text-gray-500">{t("cash.on.cash.return")}</p>
+            <p className="text-sm text-gray-500">{t("cash on cash return")}</p>
             <p className="text-lg font-semibold">
               {results.cashOnCashReturn.toFixed(2)}%
             </p>

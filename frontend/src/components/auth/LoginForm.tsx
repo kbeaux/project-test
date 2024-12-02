@@ -63,13 +63,13 @@ export function LoginForm() {
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
               <label htmlFor="email" className="sr-only">
-                {t("email.address")}
+                {t("email address")}
               </label>
               <input
                 {...register("email")}
                 type="email"
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder={t("email.address")}
+                placeholder={t("email address")}
               />
               {errors.email && (
                 <p className="mt-1 text-sm text-red-600">

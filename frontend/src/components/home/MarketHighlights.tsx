@@ -42,11 +42,11 @@ export function MarketHighlights() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900">
-            {t("market.highlights")}
+            {t("market highlights")}
           </h2>
           <p className="mt-4 text-lg text-gray-600">
             {t(
-              "stay.informed.about.the.latest.market.trends.and.opportunities",
+              "stay.informed.about.the.latest.market trends.and.opportunities",
             )}
           </p>
         </div>
@@ -90,7 +90,7 @@ export function MarketHighlights() {
                         €{highlight.stats.avgPrice}
                       </span>
                     </div>
-                    <p className="text-sm text-gray-600">{t("avg.m.")}</p>
+                    <p className="text-sm text-gray-600">{t("avg m.")}</p>
                   </div>
                   <div>
                     <div className="flex items-center text-gray-900 mb-1">

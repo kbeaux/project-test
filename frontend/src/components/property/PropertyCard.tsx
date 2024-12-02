@@ -90,14 +90,14 @@ export function PropertyCard({
           <div className="flex items-center">
             <Building2 className="h-4 w-4 text-gray-400 mr-1" />
             <span className="text-sm text-gray-500">
-              {t("property.squareMeters", { value: property.surface })}
+              {t("squareMeters", { value: property.surface })}
             </span>
           </div>
           <div className="text-right">
             <span className="text-lg font-semibold text-blue-600">
               {property.price
                 ? `${property.price}€`
-                : t("property.priceOnRequest")}
+                : t("property priceOnRequest")}
             </span>
             {property.transactionType === "RENT" && (
               <span className="text-sm text-gray-500">{t("/month")}</span>

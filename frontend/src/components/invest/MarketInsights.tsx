@@ -30,7 +30,7 @@ export function MarketInsights() {
       <div className="flex items-center mb-6">
         <TrendingUp className="h-6 w-6 text-blue-600 mr-2" />
         <h2 className="text-xl font-semibold text-gray-900">
-          {t("market.insights")}
+          {t("market insights")}
         </h2>
       </div>
 
@@ -42,10 +42,10 @@ export function MarketInsights() {
                 {t("area")}
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                {t("price.change.yoy.")}
+                {t("price change yoy.")}
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                {t("avg.price.m.")}
+                {t("avg price m.")}
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 {t("demand")}

@@ -91,7 +91,7 @@ export function Header() {
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
             onClick={() => setMobileMenuOpen(true)}
           >
-            <span className="sr-only">{t("open.main.menu")}</span>
+            <span className="sr-only">{t("open main menu")}</span>
             <Menu className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
@@ -175,7 +175,7 @@ export function Header() {
                 className="flex items-center gap-2 text-sm font-semibold leading-6 text-gray-900 hover:text-gray-600"
               >
                 <LogOut className="h-4 w-4" />
-                {t("log.out")}
+                {t("log out")}
               </button>
             </div>
           ) : (
@@ -183,7 +183,7 @@ export function Header() {
               to="/login"
               className="text-sm font-semibold leading-6 text-gray-900 hover:text-gray-600"
             >
-              {t("log.in")}
+              {t("log in")}
               <span aria-hidden="true">&rarr;</span>
             </Link>
           )}
@@ -210,7 +210,7 @@ export function Header() {
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="sr-only">{t("close.menu")}</span>
+              <span className="sr-only">{t("close menu")}</span>
               <X className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
@@ -239,7 +239,7 @@ export function Header() {
                     className="flex items-center gap-2 -mx-3 rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     <LogOut className="h-4 w-4" />
-                    {t("log.out")}
+                    {t("log out")}
                   </button>
                 ) : (
                   <Link
@@ -247,7 +247,7 @@ export function Header() {
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    {t("log.in")}
+                    {t("log in")}
                   </Link>
                 )}
               </div>

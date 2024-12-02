@@ -60,7 +60,7 @@ export function ApplicationForm({ selectedJob }: ApplicationFormProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              {t("first.name")}
+              {t("first name")}
             </label>
             <input
               type="text"
@@ -76,7 +76,7 @@ export function ApplicationForm({ selectedJob }: ApplicationFormProps) {
 
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              {t("last.name")}
+              {t("last name")}
             </label>
             <input
               type="text"
@@ -134,11 +134,11 @@ export function ApplicationForm({ selectedJob }: ApplicationFormProps) {
             defaultValue={selectedJob?.title || ""}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           >
-            <option value="">{t("select.a.position")}</option>
+            <option value="">{t("select a position")}</option>
             <option value="Commercial Real Estate Agent">
-              {t("commercial.real.estate.agent")}
+              {t("commercial real estate agent")}
             </option>
-            <option value="Property Manager">{t("property.manager")}</option>
+            <option value="Property Manager">{t("property manager")}</option>
             <option value="Real Estate Market Analyst">
               {t("real.estate.market.analyst")}
             </option>
@@ -159,10 +159,10 @@ export function ApplicationForm({ selectedJob }: ApplicationFormProps) {
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           >
             <option value="">{t("select.experience")}</option>
-            <option value="0-2">{t("0.2.years")}</option>
-            <option value="3-5">{t("3.5.years")}</option>
-            <option value="5-10">{t("5.10.years")}</option>
-            <option value="10+">{t("10.years")}</option>
+            <option value="0-2">{t("0-2 years")}</option>
+            <option value="3-5">{t("3-5 years")}</option>
+            <option value="5-10">{t("5-10 years")}</option>
+            <option value="10+">{t("10 years")}</option>
           </select>
           {errors.experience && (
             <p className="mt-1 text-sm text-red-600">
@@ -173,7 +173,7 @@ export function ApplicationForm({ selectedJob }: ApplicationFormProps) {
 
         <div>
           <label className="block text-sm font-medium text-gray-700">
-            {t("cover.letter")}
+            {t("cover letter")}
           </label>
           <textarea
             {...register("message")}
@@ -211,10 +211,10 @@ export function ApplicationForm({ selectedJob }: ApplicationFormProps) {
                     accept=".pdf,.doc,.docx"
                   />
                 </label>
-                <p className="pl-1">{t("or.drag.and.drop")}</p>
+                <p className="pl-1">{t("or drag and drop")}</p>
               </div>
               <p className="text-xs text-gray-500">
-                {t("pdf.doc.docx.up.to.10mb")}
+                {t("pdf doc docx up to 10mb")}
               </p>
             </div>
           </div>

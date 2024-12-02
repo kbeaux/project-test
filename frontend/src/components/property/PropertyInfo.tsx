@@ -68,11 +68,11 @@ export function PropertyInfo({ property }: PropertyInfoProps) {
         {property.heating && (
           <div className="border-t pt-6">
             <h2 className="text-lg font-semibold text-gray-900 mb-4">
-              {t("additional.information")}
+              {t("additional information")}
             </h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <span className="text-gray-500">{t("heating.type.")}</span>
+                <span className="text-gray-500">{t("heating type.")}</span>
                 <span className="ml-2 text-gray-900">
                   {property.heating.type}
                 </span>

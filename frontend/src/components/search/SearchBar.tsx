@@ -56,7 +56,7 @@ export function SearchBar({ onSearch, className }: SearchBarProps) {
             type="text"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            placeholder={t("city.or.postal.code")}
+            placeholder={t("city or postal code")}
             className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           />
         </div>
@@ -67,7 +67,7 @@ export function SearchBar({ onSearch, className }: SearchBarProps) {
             onChange={(e) => setCategory(e.target.value)}
             className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           >
-            <option value="">{t("all.categories")}</option>
+            <option value="">{t("all categories")}</option>
             {Object.values(PropertyCategory).map((cat) => (
               <option key={cat} value={cat}>
                 {cat}
@@ -82,7 +82,7 @@ export function SearchBar({ onSearch, className }: SearchBarProps) {
             onChange={(e) => setTransactionType(e.target.value)}
             className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           >
-            <option value="">{t("all.types")}</option>
+            <option value="">{t("all types")}</option>
             {Object.values(TransactionType).map((type) => (
               <option key={type} value={type}>
                 {type}

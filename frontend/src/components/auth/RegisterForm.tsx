@@ -50,7 +50,7 @@ export function RegisterForm() {
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            {t("create.your.account")}
+            {t("create your account")}
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             {t("or")}{" "}
@@ -81,13 +81,13 @@ export function RegisterForm() {
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <label htmlFor="firstName" className="sr-only">
-                  {t("first.name")}
+                  {t("first name")}
                 </label>
                 <input
                   {...register("firstName")}
                   type="text"
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-tl-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                  placeholder={t("first.name")}
+                  placeholder={t("first name")}
                 />
                 {errors.firstName && (
                   <p className="mt-1 text-sm text-red-600">
@@ -97,13 +97,13 @@ export function RegisterForm() {
               </div>
               <div>
                 <label htmlFor="lastName" className="sr-only">
-                  {t("last.name")}
+                  {t("last name")}
                 </label>
                 <input
                   {...register("lastName")}
                   type="text"
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-tr-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                  placeholder={t("last.name")}
+                  placeholder={t("last name")}
                 />
                 {errors.lastName && (
                   <p className="mt-1 text-sm text-red-600">
@@ -114,13 +114,13 @@ export function RegisterForm() {
             </div>
             <div>
               <label htmlFor="email" className="sr-only">
-                {t("email.address")}
+                {t("email address")}
               </label>
               <input
                 {...register("email")}
                 type="email"
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder={t("email.address")}
+                placeholder={t("email address")}
               />
               {errors.email && (
                 <p className="mt-1 text-sm text-red-600">
@@ -146,13 +146,13 @@ export function RegisterForm() {
             </div>
             <div>
               <label htmlFor="confirmPassword" className="sr-only">
-                {t("confirm.password")}
+                {t("confirm password")}
               </label>
               <input
                 {...register("confirmPassword")}
                 type="password"
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder={t("confirm.password")}
+                placeholder={t("confirm password")}
               />
               {errors.confirmPassword && (
                 <p className="mt-1 text-sm text-red-600">

@@ -38,10 +38,10 @@ export function VideoHero({ onSearch }: VideoHeroProps) {
       <div className="relative h-full flex items-center justify-center px-4">
         <div className="text-center text-white mb-8">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            {t("find.your.perfect.commercial.space")}
+            {t("find your perfect commercial space")}
           </h1>
           <p className="text-xl md:text-2xl mb-12">
-            {t("discover.premium.commercial.properties.in.prime.locations")}
+            {t("discover premium commercial properties in prime locations")}
           </p>
           <HeroSearch onSearch={onSearch} />
         </div>

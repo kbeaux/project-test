@@ -62,7 +62,7 @@ export function EstimateForm({ onSubmit }: EstimateFormProps) {
               {...register("category")}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             >
-              <option value="">{t("select.category")}</option>
+              <option value="">{t("select category")}</option>
               {Object.values(PropertyCategory).map((category) => (
                 <option key={category} value={category}>
                   {category}
@@ -187,7 +187,7 @@ export function EstimateForm({ onSubmit }: EstimateFormProps) {
                 <option value="EXCELLENT">{t("excellent")}</option>
                 <option value="GOOD">{t("good")}</option>
                 <option value="FAIR">{t("fair")}</option>
-                <option value="NEEDS_WORK">{t("needs.work")}</option>
+                <option value="NEEDS_WORK">{t("needs work")}</option>
               </select>
               {errors.features?.condition && (
                 <p className="mt-1 text-sm text-red-600">
@@ -220,7 +220,7 @@ export function EstimateForm({ onSubmit }: EstimateFormProps) {
                 className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
               />
               <label className="ml-2 block text-sm text-gray-700">
-                {t("parking.available")}
+                {t("parking available")}
               </label>
             </div>
             <div className="flex items-center">
@@ -240,7 +240,7 @@ export function EstimateForm({ onSubmit }: EstimateFormProps) {
                 className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
               />
               <label className="ml-2 block text-sm text-gray-700">
-                {t("air.conditioning")}
+                {t("air conditioning")}
               </label>
             </div>
           </div>
@@ -251,7 +251,7 @@ export function EstimateForm({ onSubmit }: EstimateFormProps) {
             type="submit"
             className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
-            {t("get.estimate")}
+            {t("get estimate")}
           </button>
         </div>
       </div>

@@ -30,7 +30,7 @@ export function PropertyGrid({ properties, isLoading }: PropertyGridProps) {
     return (
       <div className="text-center py-12">
         <h3 className="text-lg font-medium text-gray-900 mb-2">
-          {t("no.properties.found")}
+          {t("no properties found")}
         </h3>
         <p className="text-gray-500">
           {t("try.adjusting.your.search.criteria.to.find.more.properties.")}

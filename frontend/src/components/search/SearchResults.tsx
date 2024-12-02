@@ -52,7 +52,7 @@ export function SearchResults({
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold text-gray-900">
           {total}
-          {t("properties.found")}
+          {t("properties found")}
         </h2>
         <div className="flex items-center space-x-2">
           <button

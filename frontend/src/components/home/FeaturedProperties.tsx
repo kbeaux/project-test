@@ -34,12 +34,12 @@ export function FeaturedProperties() {
     <div className="bg-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-gray-900 mb-8">
-          {t("featured.properties")}
+          {t("featured properties")}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {isLoading
-            ? [...Array(6)].map((_, i) => (
+            ? [...Array(16)].map((_, i) => (
                 <div
                   key={i}
                   className="bg-white rounded-lg shadow-md overflow-hidden animate-pulse"
@@ -53,7 +53,7 @@ export function FeaturedProperties() {
                 </div>
               ))
             : properties
-                .slice(0, 6)
+                .slice(0, 16)
                 .map((property) => (
                   <PropertyCard key={property.id} property={property} />
                 ))}

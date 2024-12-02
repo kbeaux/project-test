@@ -53,7 +53,7 @@ export function PropertyContact({ property }: PropertyContactProps) {
     <div className="bg-white rounded-lg shadow-sm p-6">
       <div className="mb-6">
         <h2 className="text-lg font-semibold text-gray-900 mb-4">
-          {t("contact.agency")}
+          {t("contact agency")}
         </h2>
         <div className="space-y-3">
           <div className="flex items-center">
