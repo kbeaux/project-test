@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 export const LanguageSwitcher = () => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   return (
     <div className="language-switcher">
       <button
